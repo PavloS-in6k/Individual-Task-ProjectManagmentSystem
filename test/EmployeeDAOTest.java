@@ -1,5 +1,6 @@
 import DAO.EmployeeDAO;
 import Entity.Employee;
+import Entity.Technology;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,15 +27,16 @@ public class EmployeeDAOTest {
     }
 
     @Test
-    public void getEmployeeByID() throws Exception {
-        Employee employee = new Employee(0, "Ahmed", "jsmasta");
+    public void getEmployeeByID0() throws Exception {
+        Employee employee = new Employee(0, "Ahmed", "jsmasta",
+                asList(new Technology(0, "AngularJS"), new Technology(1, "NodeJS")));
 
         assertThat(employeeDAO.getEmployeeByID(0), equalTo(employee));
     }
 
     @Test
-    public void getThirdEmployee() throws Exception {
-        Employee employee = new Employee(2, "Celly", "zkfan");
+    public void getEmployeeByID2() throws Exception {
+        Employee employee = new Employee(2, "Celly", "zkfan", asList(new Technology(6, "ZK")));
 
         assertThat(employeeDAO.getEmployeeByID(2), equalTo(employee));
     }
@@ -42,11 +44,11 @@ public class EmployeeDAOTest {
     @Test
     public void getAllEmployees() throws Exception {
         List<Employee> employees = asList(
-                new Employee(0, "Ahmed", "jsmasta"),
-                new Employee(1, "Billy", "jsnoob"),
-                new Employee(2, "Celly", "zkfan"),
-                new Employee(3, "Dilly", "JavaWeb"),
-                new Employee(4, "Ellias", "javaJunior")
+                new Employee(0, "Ahmed", "jsmasta", asList(new Technology(0, "AngularJS"), new Technology(1, "NodeJS"))),
+                new Employee(1, "Billy", "jsnoob", asList(new Technology(0, "AngularJS"))),
+                new Employee(2, "Celly", "zkfan", asList(new Technology(6, "ZK"))),
+                new Employee(3, "Dilly", "JavaWeb", asList(new Technology(4, "Grails"), new Technology(5, "Vaadin"))),
+                new Employee(4, "Ellias", "javaJunior", asList(new Technology(2, "Hibernate"), new Technology(3, "Spring")))
         );
 
         assertThat(employeeDAO.getAllEmployees(), contains(employees.toArray()));

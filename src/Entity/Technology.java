@@ -16,6 +16,9 @@ public class Technology {
         this.name = name;
     }
 
+    public Technology() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)

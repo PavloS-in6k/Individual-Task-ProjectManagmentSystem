@@ -1,6 +1,7 @@
 package Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -13,14 +14,16 @@ public class Employee {
     private int ID;
     private String name;
     private String surname;
+    private List<Technology> technologies;
 
     public Employee() {
     }
 
-    public Employee(int ID, String name, String surname) {
+    public Employee(int ID, String name, String surname, List<Technology> technologies) {
         this.ID = ID;
         this.name = name;
         this.surname = surname;
+        this.technologies = technologies;
     }
 
     @Id
@@ -40,6 +43,15 @@ public class Employee {
         return surname;
     }
 
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<Technology> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(List<Technology> technologies) {
+        this.technologies = technologies;
+    }
 
     public void setID(int ID) {
         this.ID = ID;

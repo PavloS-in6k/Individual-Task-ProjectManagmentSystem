@@ -27,10 +27,22 @@ public class TechnologyDAOTest {
     }
 
     @Test
-    public void getTechnologyByID() throws Exception {
-        //<Technologies ID="0" TechnologyName="AngularJS"/>
+    public void getTechnologyByID0() throws Exception {
         Technology technology = new Technology(0,"AngularJS");
 
-        assertThat(technologyDAO.getTechnologyByID(0), technology);
+        assertThat(technologyDAO.getTechnologyByID(0), equalTo(technology));
+    }
+
+    @Test
+    public void getTechnologyByID3() throws Exception {
+        Technology technology = new Technology(3,"Spring");
+
+        assertThat(technologyDAO.getTechnologyByID(3), equalTo(technology));
+    }
+
+    @Test
+    public void getAllTechnologies() throws Exception {
+
+
     }
 }
