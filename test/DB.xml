@@ -22,8 +22,6 @@
     <EmployeeTechnologies EmployeeID="3" TechnologyID="5"/>
     <EmployeeTechnologies EmployeeID="3" TechnologyID="4"/>
 
-
-
     <Projects ID="0" ProjectName="InterLink Project Managment System"/>
     <Projects ID="1" ProjectName="Layer23.99"/>
     <Projects ID="2" ProjectName="Taxometor"/>

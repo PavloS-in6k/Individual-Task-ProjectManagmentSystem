@@ -13,16 +13,16 @@ import java.util.List;
 public class Assigment {
     private int ID;
     private Employee employee;
-    private Project project;
+    private int projectID;
     private List<Technology> technologies;
 
     public Assigment() {
     }
 
-    public Assigment(int ID, Employee employee, Project project, List<Technology> technologies) {
+    public Assigment(int ID, Employee employee, int projectID, List<Technology> technologies) {
         this.ID = ID;
         this.employee = employee;
-        this.project = project;
+        this.projectID = projectID;
         this.technologies = technologies;
     }
 
@@ -40,13 +40,12 @@ public class Assigment {
         return employee;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ProjectID", nullable = false)
-    public Project getProject() {
-        return project;
+    @Column(name = "projectID", nullable = false)
+    public int getProject() {
+        return projectID;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Technology> getTechnologies() {
         return technologies;
     }
@@ -59,11 +58,40 @@ public class Assigment {
         this.employee = employee;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProject(int projectID) {
+        this.projectID = projectID;
     }
 
     public void setTechnologies(List<Technology> technologies) {
         this.technologies = technologies;
+    }
+
+    @Override
+    public String toString() {
+        return "Assigment{" +
+                "ID=" + ID +
+                ", employee=" + employee +
+                ", technologies=" + technologies +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Assigment assigment = (Assigment) o;
+
+        if (projectID != assigment.projectID) return false;
+        if (employee != null ? !employee.equals(assigment.employee) : assigment.employee != null) return false;
+        return technologies != null ? technologies.equals(assigment.technologies) : assigment.technologies == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employee != null ? employee.hashCode() : 0;
+        result = 31 * result + (technologies != null ? technologies.hashCode() : 0);
+        return result;
     }
 }

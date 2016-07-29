@@ -31,6 +31,7 @@ public class EmployeeDAOTest {
         Employee employee = new Employee(0, "Ahmed", "jsmasta",
                 asList(new Technology(0, "AngularJS"), new Technology(1, "NodeJS")));
 
+
         assertThat(employeeDAO.getEmployeeByID(0), equalTo(employee));
     }
 

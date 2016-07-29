@@ -1,5 +1,6 @@
 package DAO;
 
+import Entity.Assigment;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,5 +14,9 @@ public class AssigmentDAO {
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public Assigment getAssigmentByID(int key) {
+        return sessionFactory.getCurrentSession().get(Assigment.class, key);
     }
 }
