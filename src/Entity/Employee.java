@@ -4,10 +4,10 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Employee", catalog = "Entity", uniqueConstraints = {
+@Table(name = "Employees", catalog = "Entity", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID"),
         @UniqueConstraint(columnNames = "Name"),
-        @UniqueConstraint(columnNames = "Surame")
+        @UniqueConstraint(columnNames = "Surname")
 })
 public class Employee {
     private int ID;
@@ -51,5 +51,33 @@ public class Employee {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        return surname != null ? surname.equals(employee.surname) : employee.surname == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        return result;
     }
 }

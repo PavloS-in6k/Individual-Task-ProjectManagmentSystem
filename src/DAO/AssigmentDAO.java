@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class ProjectDAO {
+public class AssigmentDAO {
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory) {

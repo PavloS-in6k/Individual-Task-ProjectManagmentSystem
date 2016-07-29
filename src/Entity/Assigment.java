@@ -7,8 +7,6 @@ public class Assigment {
     Employee employee;
     Project project;
     List<Technology> technologies;
-    LocalDate beginDate;
-    LocalDate endDate;
 
 
 }
