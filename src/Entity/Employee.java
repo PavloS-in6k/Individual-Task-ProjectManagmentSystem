@@ -92,7 +92,7 @@ public class Employee {
     }
 
     private boolean isEquals(Employee employee) {
-        return ((technologies.containsAll(employee.technologies)) && (technologies.size() == employee.technologies.size()));
+        return (technologies.containsAll(employee.technologies) && (technologies.size() == employee.technologies.size()));
     }
 
 

@@ -35,7 +35,7 @@ public class AssigmentDAOTest {
         Employee employee = new Employee(4, "Ellias", "javaJunior", asList(new Technology(2, "Hibernate"),
                 new Technology(3, "Spring")));
         Assigment assigment = new Assigment(0, employee, 0, employee.getTechnologies());
-        Assigment gettedAssigment = assigmentDAO.getAssigmentByID(0);
+        Assigment gettedAssigment = assigmentDAO.getAssigmentEagerByID(0);
         assertThat(gettedAssigment, equalTo(assigment));
     }
 }

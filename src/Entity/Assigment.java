@@ -48,7 +48,7 @@ public class Assigment {
         return projectID;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "AssigmentTechnologies",
             joinColumns = {@JoinColumn(name = "AssigmentID")},
             inverseJoinColumns = {@JoinColumn(name = "TechnologyID")}

@@ -17,10 +17,11 @@ public class Project {
     public Project() {
     }
 
-    public Project(int ID, String name, List<Assigment> assigments) {
+    public Project(int ID, String name, List<Assigment> assigments, List<Technology> technologies) {
         this.ID = ID;
         this.name = name;
         this.assigments = assigments;
+        this.technologies = technologies;
     }
 
     @Id
@@ -35,12 +36,20 @@ public class Project {
         return name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "Assigments",
+            joinColumns = {@JoinColumn(name = "ProjectID")},
+            inverseJoinColumns = {@JoinColumn(name = "ID")}
+    )
     public List<Assigment> getAssigments() {
         return assigments;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "ProjectTechnologies",
+            joinColumns = {@JoinColumn(name = "ProjectID")},
+            inverseJoinColumns = {@JoinColumn(name = "TechnologyID")}
+    )
     public List<Technology> getTechnologies() {
         return technologies;
     }
@@ -78,9 +87,18 @@ public class Project {
         Project project = (Project) o;
 
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
-        return assigments != null ? assigments.equals(project.assigments) : project.assigments == null;
-
+        if (assigments != null ? !isAssigmentsEquals(project) : project.assigments != null) return false;
+        return technologies != null ? isTechnologiesEquals(project) : project.technologies == null;
     }
+
+    private boolean isTechnologiesEquals(Project project) {
+        return (technologies.containsAll(project.technologies) && (technologies.size() == project.technologies.size()));
+    }
+
+    private boolean isAssigmentsEquals(Project project) {
+        return (assigments.containsAll(project.assigments) && (assigments.size() == project.assigments.size()));
+    }
+
 
     @Override
     public int hashCode() {
