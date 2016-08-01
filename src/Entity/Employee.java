@@ -45,6 +45,10 @@ public class Employee {
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "EmployeeTechnologies",
+            joinColumns = {@JoinColumn(name = "EmployeeID")},
+            inverseJoinColumns = {@JoinColumn(name = "TechnologyID")}
+    )
     public List<Technology> getTechnologies() {
         return technologies;
     }
@@ -71,6 +75,7 @@ public class Employee {
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", technologies=" + technologies +
                 '}';
     }
 
@@ -82,9 +87,14 @@ public class Employee {
         Employee employee = (Employee) o;
 
         if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
-        return surname != null ? surname.equals(employee.surname) : employee.surname == null;
-
+        if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
+        return technologies != null ? isEquals(employee) : employee.technologies == null;
     }
+
+    private boolean isEquals(Employee employee) {
+        return ((technologies.containsAll(employee.technologies)) && (technologies.size() == employee.technologies.size()));
+    }
+
 
     @Override
     public int hashCode() {

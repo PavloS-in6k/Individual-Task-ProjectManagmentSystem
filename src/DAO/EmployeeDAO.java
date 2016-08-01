@@ -23,7 +23,7 @@ public class EmployeeDAO {
         return sessionFactory.getCurrentSession().get(Employee.class, key);
     }
 
-    public <T> List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         return sessionFactory.getCurrentSession().createQuery("from Employee").getResultList();
     }
 }

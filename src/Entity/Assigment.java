@@ -1,5 +1,8 @@
 package Entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -46,6 +49,11 @@ public class Assigment {
     }
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "AssigmentTechnologies",
+            joinColumns = {@JoinColumn(name = "AssigmentID")},
+            inverseJoinColumns = {@JoinColumn(name = "TechnologyID")}
+    )
+    @Fetch(FetchMode.SELECT)
     public List<Technology> getTechnologies() {
         return technologies;
     }
@@ -84,9 +92,13 @@ public class Assigment {
 
         if (projectID != assigment.projectID) return false;
         if (employee != null ? !employee.equals(assigment.employee) : assigment.employee != null) return false;
-        return technologies != null ? technologies.equals(assigment.technologies) : assigment.technologies == null;
-
+        return technologies != null ? isEquals(assigment) : assigment.technologies == null;
     }
+
+    private boolean isEquals(Assigment assigment) {
+        return ((technologies.containsAll(assigment.technologies)) && (technologies.size() == assigment.technologies.size()));
+    }
+
 
     @Override
     public int hashCode() {

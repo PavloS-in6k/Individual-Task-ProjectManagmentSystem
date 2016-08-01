@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
@@ -37,7 +39,7 @@ public class EmployeeDAOTest {
 
     @Test
     public void getEmployeeByID2() throws Exception {
-        Employee employee = new Employee(2, "Celly", "zkfan", asList(new Technology(6, "ZK")));
+        Employee employee = new Employee(2, "Celly", "zkfan", singletonList(new Technology(5, "Vaadin")));
 
         assertThat(employeeDAO.getEmployeeByID(2), equalTo(employee));
     }
@@ -47,7 +49,7 @@ public class EmployeeDAOTest {
         List<Employee> employees = asList(
                 new Employee(0, "Ahmed", "jsmasta", asList(new Technology(0, "AngularJS"), new Technology(1, "NodeJS"))),
                 new Employee(1, "Billy", "jsnoob", asList(new Technology(0, "AngularJS"))),
-                new Employee(2, "Celly", "zkfan", asList(new Technology(6, "ZK"))),
+                new Employee(2, "Celly", "zkfan", asList( new Technology(5, "Vaadin"))),
                 new Employee(3, "Dilly", "JavaWeb", asList(new Technology(4, "Grails"), new Technology(5, "Vaadin"))),
                 new Employee(4, "Ellias", "javaJunior", asList(new Technology(2, "Hibernate"), new Technology(3, "Spring")))
         );
