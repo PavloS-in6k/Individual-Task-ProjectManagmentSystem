@@ -26,6 +26,12 @@ public class Employee {
         this.technologies = technologies;
     }
 
+    public Employee(String name, String surname, List<Technology> technologies) {
+        this.name = name;
+        this.surname = surname;
+        this.technologies = technologies;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)

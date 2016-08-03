@@ -1,7 +1,5 @@
 import DAO.TechnologyDAO;
-import DB.DB;
 import Entity.Technology;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

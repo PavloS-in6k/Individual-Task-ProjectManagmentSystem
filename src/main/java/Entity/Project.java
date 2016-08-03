@@ -24,6 +24,12 @@ public class Project {
         this.technologies = technologies;
     }
 
+    public Project(String name, List<Assigment> assigments, List<Technology> technologies) {
+        this.name = name;
+        this.assigments = assigments;
+        this.technologies = technologies;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)

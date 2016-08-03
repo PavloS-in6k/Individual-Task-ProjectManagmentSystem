@@ -118,8 +118,7 @@ public class DB {
         File xmlFile = new File(this.getClass().getClassLoader().getResource("/DB.xml").getFile());
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(xmlFile);
-        return doc;
+        return dBuilder.parse(xmlFile);
     }
 
     public static void cleanUp() throws Exception {

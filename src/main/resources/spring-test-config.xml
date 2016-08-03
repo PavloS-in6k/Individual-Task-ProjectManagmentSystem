@@ -19,9 +19,11 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="db" class="DB.DB" init-method="setUpDB"/>
+
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:ProjectDB"/>
+        <property name="url" value="jdbc:hsqldb:file:ProjectDB/ProjectDB"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>

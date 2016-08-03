@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public class TechnologyDAO {
     private SessionFactory sessionFactory;
@@ -19,5 +21,15 @@ public class TechnologyDAO {
 
     public Technology getTechnologyByID(int key) {
         return sessionFactory.getCurrentSession().get(Technology.class, key);
+    }
+
+    public Technology getTechnologyByName(String name) {
+        return (Technology) sessionFactory.getCurrentSession()
+                .createQuery("from Technology technology where technology.name = :name")
+                .setParameter("name", name).getSingleResult();
+    }
+
+    public List<Technology> getAllTechnologies() {
+        return sessionFactory.getCurrentSession().createQuery("from Technology").getResultList();
     }
 }

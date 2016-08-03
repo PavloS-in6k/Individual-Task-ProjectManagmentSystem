@@ -1,9 +1,7 @@
 import DAO.AssigmentDAO;
-import DB.DB;
 import Entity.Assigment;
 import Entity.Employee;
 import Entity.Technology;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

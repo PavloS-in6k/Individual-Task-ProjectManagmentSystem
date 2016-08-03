@@ -17,9 +17,21 @@
         </servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>EmployeeAddController</servlet-name>
+        <servlet-class>
+            Controllers.EmployeeAddController
+        </servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>EmployeeVievController</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EmployeeAddController</servlet-name>
+        <url-pattern>/addEmployee</url-pattern>
     </servlet-mapping>
 </web-app>
 

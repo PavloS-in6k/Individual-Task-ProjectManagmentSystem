@@ -2,7 +2,6 @@ package DAO;
 
 import Entity.Employee;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -26,5 +25,9 @@ public class EmployeeDAO {
 
     public List<Employee> getAllEmployees() {
         return sessionFactory.getCurrentSession().createQuery("from Employee").getResultList();
+    }
+
+    public void addEmployee(Employee employee) {
+        sessionFactory.getCurrentSession().save(employee);
     }
 }
