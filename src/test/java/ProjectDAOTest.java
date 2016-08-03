@@ -1,4 +1,5 @@
 import DAO.ProjectDAO;
+import DB.DB;
 import Entity.Assigment;
 import Entity.Employee;
 import Entity.Project;
@@ -18,15 +19,16 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring-test-config.xml"})
+@ContextConfiguration(locations = {"classpath:/spring-test-config.xml"})
+//@ContextConfiguration(locations = {"/spring-test-config.xml"})
 public class ProjectDAOTest {
     @Autowired
     ProjectDAO projectDAO;
 
-    @Before
-    public void setUp() throws Exception {
-        DB.setUpDB();
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//        DB.setUpDB();
+//    }
 
     @Test
     public void getProjectByID0() throws Exception {

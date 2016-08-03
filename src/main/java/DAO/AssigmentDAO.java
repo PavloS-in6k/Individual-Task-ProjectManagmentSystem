@@ -1,8 +1,8 @@
 package DAO;
 
 import Entity.Assigment;
-import org.hibernate.CacheMode;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -21,9 +21,9 @@ public class AssigmentDAO {
         return sessionFactory.getCurrentSession().get(Assigment.class, key);
     }
 
-    public Assigment getAssigmentEagerByID(int key){
+    public Assigment getAssigmentEagerByID(int key) {
         return (Assigment) sessionFactory.getCurrentSession()
                 .createQuery("select assigment from Assigment assigment join fetch assigment.technologies where assigment.ID = :id")
-                .setParameter("id",key).getSingleResult();
+                .setParameter("id", key).getSingleResult();
     }
 }

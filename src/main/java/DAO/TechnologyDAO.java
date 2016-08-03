@@ -1,14 +1,12 @@
 package DAO;
 
-import Entity.Employee;
+import Entity.Technology;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Transactional
-public class EmployeeDAO {
-
+public class TechnologyDAO {
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -19,11 +17,7 @@ public class EmployeeDAO {
         return sessionFactory;
     }
 
-    public Employee getEmployeeByID(int key) {
-        return sessionFactory.getCurrentSession().get(Employee.class, key);
-    }
-
-    public List<Employee> getAllEmployees() {
-        return sessionFactory.getCurrentSession().createQuery("from Employee").getResultList();
+    public Technology getTechnologyByID(int key) {
+        return sessionFactory.getCurrentSession().get(Technology.class, key);
     }
 }

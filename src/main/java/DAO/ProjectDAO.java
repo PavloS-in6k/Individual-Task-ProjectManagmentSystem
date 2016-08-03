@@ -4,6 +4,7 @@ import Entity.Assigment;
 import Entity.Project;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional

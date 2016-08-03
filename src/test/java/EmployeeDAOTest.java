@@ -1,4 +1,5 @@
 import DAO.EmployeeDAO;
+import DB.DB;
 import Entity.Employee;
 import Entity.Technology;
 import org.junit.Before;
@@ -7,8 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -18,15 +19,15 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring-test-config.xml"})
+@ContextConfiguration(locations = {"classpath:/spring-test-config.xml"})
 public class EmployeeDAOTest {
     @Autowired
     EmployeeDAO employeeDAO;
 
-    @Before
-    public void setUp() throws Exception {
-        DB.setUpDB();
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//        DB.setUpDB();
+//    }
 
     @Test
     public void getEmployeeByID0() throws Exception {
@@ -49,7 +50,7 @@ public class EmployeeDAOTest {
         List<Employee> employees = asList(
                 new Employee(0, "Ahmed", "jsmasta", asList(new Technology(0, "AngularJS"), new Technology(1, "NodeJS"))),
                 new Employee(1, "Billy", "jsnoob", asList(new Technology(0, "AngularJS"))),
-                new Employee(2, "Celly", "zkfan", asList( new Technology(5, "Vaadin"))),
+                new Employee(2, "Celly", "zkfan", asList(new Technology(5, "Vaadin"))),
                 new Employee(3, "Dilly", "JavaWeb", asList(new Technology(4, "Grails"), new Technology(5, "Vaadin"))),
                 new Employee(4, "Ellias", "javaJunior", asList(new Technology(2, "Hibernate"), new Technology(3, "Spring")))
         );

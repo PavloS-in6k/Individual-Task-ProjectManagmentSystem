@@ -1,4 +1,5 @@
 import DAO.AssigmentDAO;
+import DB.DB;
 import Entity.Assigment;
 import Entity.Employee;
 import Entity.Technology;
@@ -14,15 +15,16 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring-test-config.xml"})
+@ContextConfiguration(locations = {"classpath:spring-test-config.xml"})
+//@ContextConfiguration(locations = {"/spring-test-config.xml"})
 public class AssigmentDAOTest {
     @Autowired
     AssigmentDAO assigmentDAO;
 
-    @Before
-    public void setUp() throws Exception {
-        DB.setUpDB();
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//        DB.setUpDB();
+//    }
 
     @Test
     public void getAssigmentByID0() throws Exception {

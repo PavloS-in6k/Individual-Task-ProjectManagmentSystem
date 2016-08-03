@@ -1,3 +1,5 @@
+package DB;
+
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -6,6 +8,7 @@ import org.dbunit.operation.DatabaseOperation;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import javax.servlet.ServletContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,10 +30,17 @@ public class DB {
     private void dropDB() {
     }
 
-    public static void setUpDB() throws Exception {
+    public void setUpDB() throws Exception {
         if (databaseTester == null) {
             databaseTester = new JdbcDatabaseTester(org.hsqldb.jdbcDriver.class
-                    .getName(), "jdbc:hsqldb:mem:ProjectDB", "sa", "");
+                    .getName(), "jdbc:hsqldb:file:ProjectDB/ProjectDB", "sa", "");
+
+            PreparedStatement statement = databaseTester.getConnection()
+                    .getConnection().prepareStatement("DROP SCHEMA PUBLIC CASCADE");
+            statement.execute();
+            statement.close();
+
+
             createTablesSinceDbUnitDoesNot(databaseTester.getConnection().getConnection());
             String inputXml = getStringDBfromXml();
             IDataSet dataSet = new FlatXmlDataSetBuilder().build(new StringReader(inputXml));
@@ -91,7 +101,7 @@ public class DB {
     }
 
 
-    protected static String getStringDBfromXml() throws Exception {
+    protected String getStringDBfromXml() throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer;
 
@@ -103,8 +113,9 @@ public class DB {
         return writer.getBuffer().toString();
     }
 
-    private static Document getXml() throws ParserConfigurationException, SAXException, IOException {
-        File xmlFile = new File("test/DB.xml");
+    private Document getXml() throws ParserConfigurationException, SAXException, IOException {
+        //File xmlFile = new File("/WEB_INF/classes/DB.xml");
+        File xmlFile = new File(this.getClass().getClassLoader().getResource("/DB.xml").getFile());
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(xmlFile);
