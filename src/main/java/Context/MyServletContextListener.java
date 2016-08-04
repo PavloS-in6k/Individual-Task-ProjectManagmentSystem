@@ -21,7 +21,6 @@ public class MyServletContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        System.out.println("an fail -- or, context destroyed");
     }
 
     public static <T> T getBean(Class<T> beanClass) {

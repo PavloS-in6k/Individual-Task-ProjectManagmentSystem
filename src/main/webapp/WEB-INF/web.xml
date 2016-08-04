@@ -6,32 +6,32 @@
 
     <listener>
         <listener-class>
-            Context.MyServletContextListener
+            org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
 
-    <servlet>
-        <servlet-name>EmployeeVievController</servlet-name>
-        <servlet-class>
-            Controllers.EmployeeShowController
-        </servlet-class>
-    </servlet>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring-config.xml
+        </param-value>
+    </context-param>
+
+
+    <!--Context.MyServletContextListener-->
 
     <servlet>
-        <servlet-name>EmployeeAddController</servlet-name>
+        <servlet-name>spring-web</servlet-name>
         <servlet-class>
-            Controllers.EmployeeAddController
+            org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>EmployeeVievController</servlet-name>
+        <servlet-name>spring-web</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>EmployeeAddController</servlet-name>
-        <url-pattern>/addEmployee</url-pattern>
-    </servlet-mapping>
 </web-app>
 
